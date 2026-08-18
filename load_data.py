@@ -11,7 +11,7 @@ DATA_PATH = os.path.join(
 
 
 def load_data(path: str = DATA_PATH) -> pd.DataFrame:
-
+    # this is route
     if not os.path.exists(path):
 
         raise FileNotFoundError(

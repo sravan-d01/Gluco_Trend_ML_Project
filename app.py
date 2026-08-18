@@ -27,7 +27,7 @@ def data_loading():
 
     error = None
     summary = None
-
+    # this is route
     try:
         summary = get_data_summary()
 
