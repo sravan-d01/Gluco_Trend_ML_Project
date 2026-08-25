@@ -20,6 +20,12 @@
 <header class="topbar">
 
     <h1>🩺 GlucoTrend AI Healthcare Analytics</h1>
+    <span class="trace-divider">
+        <svg viewBox="0 0 900 26" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,18 L60,18 L85,6 L110,22 L140,10 L170,18 L230,18 L255,4 L280,20 L310,14 L340,18 L410,18 L435,8 L460,20 L495,12 L520,18 L590,18 L615,3 L640,22 L670,9 L700,18 L770,18 L795,7 L820,19 L850,13 L900,18" />
+        </svg>
+    </span>
+
 
 </header>
 
@@ -60,9 +66,10 @@
 
 
         <li>
-            <span class="menu-item disabled">
+            <a href="{{ url_for('preprocessing') }}"
+               class="menu-item {% if active == 'preprocessing' %}active{% endif %}">
                 Data Preprocessing
-            </span>
+            </a>
         </li>
 
 
@@ -202,4 +209,3 @@
 </body>
 
 </html>
-<!--this is html-->

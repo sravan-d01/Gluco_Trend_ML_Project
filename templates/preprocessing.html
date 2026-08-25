@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>GlucoTrend - Preprocessing</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <h1>🩺 GlucoTrend - Data Preprocessing</h1>
+    <span class="trace-divider">
+        <svg viewBox="0 0 900 26" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0,18 L60,18 L85,6 L110,22 L140,10 L170,18 L230,18 L255,4 L280,20 L310,14 L340,18 L410,18 L435,8 L460,20 L495,12 L520,18 L590,18 L615,3 L640,22 L670,9 L700,18 L770,18 L795,7 L820,19 L850,13 L900,18" />
+        </svg>
+    </span>
+
+
+</header>
+
+
+<div class="layout">
+
+
+    <!-- SIDEBAR -->
+
+    <nav class="sidebar">
+
+        <ul>
+
+            <li>
+
+                <a href="{{ url_for('index') }}"
+                   class="menu-item">
+
+                    Dashboard
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="{{ url_for('data_loading') }}"
+                   class="menu-item">
+
+                    Data Loading
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="{{ url_for('eda_page') }}"
+                   class="menu-item">
+
+                    Exploratory Data Analysis
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="{{ url_for('preprocessing') }}"
+                   class="menu-item active">
+
+                    Data Preprocessing
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <span class="menu-item disabled">
+
+                    Feature Engineering
+
+                </span>
+
+            </li>
+
+
+            <li>
+
+                <span class="menu-item disabled">
+
+                    Model Training
+
+                </span>
+
+            </li>
+
+
+            <li>
+
+                <span class="menu-item disabled">
+
+                    Prediction
+
+                </span>
+
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="content">
+
+        <h2>Data Preprocessing</h2>
+
+        <p class="page-description">
+            Prepares the GlucoTrend dataset for modeling: a chronological
+            per-user train/test split, Min-Max scaling, One-Hot encoding,
+            Ordinal encoding and Standard scaling.
+        </p>
+
+
+        {% if error %}
+
+            <div class="error">
+                <h3>Preprocessing Error</h3>
+                <p>{{ error }}</p>
+            </div>
+
+        {% endif %}
+
+
+        {% if success %}
+
+            <!-- STEPS COMPLETED -->
+
+            <div class="card success-card">
+
+                <h3>✅ Preprocessing Completed Successfully</h3>
+
+                <p>The following steps were executed, in order:</p>
+
+                <ol class="steps-list">
+
+                    <li>Chronological train/test split (80/20 per user)</li>
+
+                    <li>Min-Max Scaling of numeric &amp; time features</li>
+
+                    <li>One-Hot Encoding of nominal categorical columns</li>
+
+                    <li>Ordinal Encoding of exercise intensity</li>
+
+                    <li>Standard Scaling of numeric &amp; time features</li>
+
+                </ol>
+
+            </div>
+
+
+            <!-- SHAPE SUMMARY -->
+
+            <div class="summary-cards">
+
+                <div class="summary-card">
+                    <h3>{{ original_shape[0] }}</h3>
+                    <p>Original Rows</p>
+                </div>
+
+                <div class="summary-card">
+                    <h3>{{ feature_count }}</h3>
+                    <p>Final Feature Columns</p>
+                </div>
+
+                <div class="summary-card">
+                    <h3>{{ train_shape[0] }}</h3>
+                    <p>Training Rows (X_train)</p>
+                </div>
+
+                <div class="summary-card">
+                    <h3>{{ test_shape[0] }}</h3>
+                    <p>Testing Rows (X_test)</p>
+                </div>
+
+            </div>
+
+            <div class="summary-cards">
+
+                <div class="summary-card">
+                    <h3>{{ target_train_shape[0] }}</h3>
+                    <p>y_train Rows</p>
+                </div>
+
+                <div class="summary-card">
+                    <h3>{{ target_test_shape[0] }}</h3>
+                    <p>y_test Rows</p>
+                </div>
+
+            </div>
+
+
+            <!-- X_TRAIN PREVIEW -->
+
+            <h3>X_train Preview</h3>
+
+            <div class="table-wrapper">
+                {{ train_preview | safe }}
+            </div>
+
+
+            <!-- X_TEST PREVIEW -->
+
+            <h3>X_test Preview</h3>
+
+            <div class="table-wrapper">
+                {{ test_preview | safe }}
+            </div>
+
+        {% endif %}
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

@@ -58,7 +58,7 @@ def run_eda() -> dict:
     eda_sections.append({
         "number": 1,
         "title": "Load Data",
-        "description": "Loads the GlucoTrend dataset and checks its basic shape and first records.",
+        "description": "Loads the GlucoTrend dataset and then checks its basic shape and first records.",
         "chart": None
     })
 
@@ -589,7 +589,7 @@ def run_eda() -> dict:
         "description": "Compares glucose levels across different exercise intensity levels.",
         "chart": chart_file
     })
-    # this is route
+
     # ============================================================
     # RETURN RESULTS
     # ============================================================
